@@ -3,7 +3,10 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import Popup from 'reactjs-popup';
 
 
-
+// import SearchIcon from "@material-ui/icons/Search";
+// import CloseIcon from "@material-ui/icons/Close";
+// import Home from "./Components/Home";
+// import "./assets/css/chat.css"
 
 function Chat({ socket, username, room, data, placeholder }) {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -89,12 +92,6 @@ function Chat({ socket, username, room, data, placeholder }) {
             <h6>Linked Device</h6>
             <h6>Started Message</h6>
             <h6>Setting</h6>
-            
-            <h6>New Group</h6>
-            <h6>Linked Device</h6>
-            <h6>Started Message</h6>
-            <h6>Setting</h6>
-
           </button>
         </Popup>
       </div>
