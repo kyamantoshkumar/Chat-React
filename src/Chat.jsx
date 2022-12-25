@@ -51,7 +51,7 @@ function Chat({ socket, username, room, data, placeholder }) {
     socket.on("receive_message", (data) => {
       setMessageList((list) => [...list, data]);
     });
-    console.log();
+    console.log(messageList);
   }, [socket]);
 
   const myStyle = {
