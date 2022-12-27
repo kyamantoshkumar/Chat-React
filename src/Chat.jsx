@@ -3,7 +3,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import Popup from 'reactjs-popup';
 
 const TableRows = ({ rows, tableRowRemove, onValUpdate }) => { 
-  return rows.map((rowsData, index) => {
+  return rows?.map((rowsData, index) => { 
      const { id, name, profile } = rowsData;
      return (
       <tr key={index}>
@@ -11,7 +11,7 @@ const TableRows = ({ rows, tableRowRemove, onValUpdate }) => {
           <input 
            type="text"
            value={id}
-           onChnage={(event) => onValUpdate(index.event)}
+           onChange={(event) => onValUpdate(index,event)}
            name="id"
            className="form-control"
            />
@@ -29,7 +29,7 @@ const TableRows = ({ rows, tableRowRemove, onValUpdate }) => {
           <input 
            type='text'
            value={profile}
-           onChnage={(event) => onValUpdate(index, event)}
+           onChange={(event) => onValUpdate(index, event)}
            name="profile"
            className="form-control"
           />
@@ -113,15 +113,18 @@ function Chat({ socket, username, room, data, placeholder }) {
    const tableRowRemove = (index) => {
     const dataRow = [...rows];
     dataRow.splice(index, 1)
-    initRows(data)
+    initRows(dataRow)
    }
 
    const onValUpdate = (i, event) => {
-    const  {id, value} = event.target;
+    const  {name, value} = event.target;
     const data = [...rows];
-    data[i][id] = value;
+    data[i][name] = value;
     initRows(data)
   };
+
+   
+
   useEffect(() => {
     socket.on("receive_message", (data) => {
       setMessageList((list) => [...list, data]);
@@ -194,14 +197,14 @@ function Chat({ socket, username, room, data, placeholder }) {
                 <div>
                   <h5 className="text-center">Group Memeber</h5>
                 <table>
-                  <thead>
-                    <tr>
+                  <thead className="col-md-">
+                    <tr className="justify-content-around">
                       <th>Id</th>
                       <th>Name</th>
                       <th>Profile</th>
                     
                     <th>
-                    <button className="btn btn-success" onClick={addRowTable}></button>
+                    <button className="btn btn-success" onClick={addRowTable}>Insert Row</button>
                     </th>
                     </tr>
                   </thead>
