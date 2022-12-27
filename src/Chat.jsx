@@ -43,14 +43,15 @@ const TableRows = ({ rows, tableRowRemove, onValUpdate, formObject, onFormSubmit
 }
 
 
-// const data = ({value, onValUpdate  }) => {
-//    return value.map((valueData, index ) => {
-//     const { id, name, profile} = valueData;
-//     return (
-//       <tr onValUpdate={data}>{value.id}</tr>
-//     )
-//    })
-// } 
+const data = ({value, onValUpdate  }) => {
+   return value.map((rowsData, index ) => {
+    const { data } = rowsData
+    return (
+      
+      <tr onValUpdate={data}>{onValUpdate.rowsData}</tr>
+    )
+   })
+} 
 
 // const memberData = [
 //   {
@@ -136,18 +137,13 @@ function Chat({ socket, username, room, data, placeholder }) {
     initRows(data)
     console.log(data)
   };
-  const [tableData, setTableData] = useState([]);
-  const [formObject, setFormObject] = useState({
-    name: "",
-    email: "",
-    profile: "",
-  });
+ 
   const onValChange = (event) => {
-    const value = (res) => ({
+    const data = (res) => ({
       ...res,
       [event.target.name]: event.target.value,
     });
-    setFormObject(value);
+    addRowTable(data);
   };
    
 
@@ -190,7 +186,7 @@ function Chat({ socket, username, room, data, placeholder }) {
         >
           <div style={myStyle} className="btn-light text-start rounded-1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
 
-            <button type="button" className="btn btncli" data-bs-toggle="modal" data-bs-target="#exampleModal">New Member</button>
+            <button type="button" className="btn btncli" data-bs-toggle="modal" data-bs-target="#exampleModal">New Member</button> 
 
             <div className="modal " id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div className="modal-dialog">
@@ -229,11 +225,16 @@ function Chat({ socket, username, room, data, placeholder }) {
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="item in contacts">
+      {
+        rows.map((rows) => {
+<tr ng-repeat="item in contacts">
         <td>{rows.id}</td>
         <td>{rows.name}</td>
         <td>{rows.profile}</td>
       </tr>
+        })
+      }
+      
     </tbody>
   </table>
  </div>
@@ -258,6 +259,7 @@ function Chat({ socket, username, room, data, placeholder }) {
                    rows={rows}
                    tableRowRemove={tableRowRemove}
                    onValUpdate={onValUpdate}
+                   onValChange={onValChange}
                   />
                 </tbody>
               </tbody>
