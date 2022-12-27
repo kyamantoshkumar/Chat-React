@@ -1,3 +1,4 @@
+import { Table } from "@material-ui/core";
 import React, { useEffect, useRef, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import Popup from 'reactjs-popup';
@@ -43,8 +44,34 @@ function Chat({ socket, username, room, data, placeholder }) {
   const handleInput = (e) => {
     e.preventDefault()
     setText(e.target.value);
-   
   };
+
+  const memberData = [
+    {
+      id: 2123,
+      Name: "Subham"
+    },
+    {
+      id:2234,
+      Name:'Saurabh'
+    },
+    {
+      id:1123,
+      Name:'Shreyas'
+    },
+  ];
+  
+  const Author = () => {
+      const [author, setAuthor] = useState("")
+  }
+
+  const [createTable, setCreateTable] = React.useState("");
+  const onCreateTable = () => {
+    alert(
+    " Hello World"
+    )
+    setCreateTable(!createTable);
+  }
 
 
   useEffect(() => {
@@ -54,7 +81,8 @@ function Chat({ socket, username, room, data, placeholder }) {
   }, [socket]);
 
   const myStyle = {
-    fontFamily: 'Text New Roman'
+    fontFamily: 'Text New Roman',
+    background:'#d1e9f5'
   }
 
   return (
@@ -72,70 +100,117 @@ function Chat({ socket, username, room, data, placeholder }) {
             value={text}
             onChange={handleInput}
           />
-          <i className="fa-solid fa-magnifying-glass"></i>
+          {/* <i className="fa-solid fa-magnifying-glass"></i> */}
           <p className="text-black bg-primary" ref=
             {paragraphEl}
           >
           </p>
-       
-         
+
+
         </div>
 
         <Popup
+
           trigger={<button className="ellipsis" style={{ background: 'transparent', border: 'none' }}><i className="ellipsis fa-solid fa-ellipsis-vertical"></i>
           </button>}
           position="left top" className="bg-primary"
         >
-          <button style={myStyle} type="button" className="text-start btn btn-light" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
-            <h6>New Group</h6>
-            <h6>Linked Device</h6>
-            <h6>Started Message</h6>
-            <h6>Setting</h6>
-          </button>
+          <div style={myStyle} className="btn-light text-start rounded-1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
+
+            <h6 className="btn btncli" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">New Member</h6>
+
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">New Member</h5>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div className="modal-body">
+                    <form>
+                      <div className="mb-3">
+                        <label htmlFor="recipient-name" className="col-form-label">Id:</label>
+                        <input type="text" className="form-control" id="recipient-id" />
+                      </div>
+                      <div className="mb-3">
+                        <label htmlFor="message-text" className="col-form-label">Author:</label>
+                        <input type="text" className="form-control" id="recipient-author" />
+                      </div>
+                    </form>
+                  </div>
+                  <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close Group</button>
+                    <button type="button" className="btn btn-primary">Add Member</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div><h6 onClick={onCreateTable} className="btn btncl">Linked Device</h6></div>
+            <div><h6 className="btn btncl">Started Message</h6>
+               <div>
+                <table>
+                   <thead>
+                    <th scope="col">Sl No</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Author</th>
+                   </thead>
+                </table>
+                <tbody>
+                  {memberData.map((author) => {
+                   <tr>
+                      <th scope="row">{author.id}</th>
+                      <th scope="row">{author.Name}</th>
+                   </tr>
+                  })}
+                </tbody>
+               </div>
+            </div>
+            <div><h6 className="btn btncl">Setting</h6></div>
+          </div>
         </Popup>
       </div>
 
       <div className="chat-body">
         <ScrollToBottom className="message-container">
           {messageList.map((messageContent, index) => {
-            return (        
-             <div
-              key={index}
-              
-             className={text? (messageContent.message.includes(text) ? "message":"d-none"):"message"}
-              id={username === messageContent.author ? "you" : "other"}
-              >
-              <div>
-                <div className="message-content" style=
-                  {{
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: "0.2rem"
-                  }}>
-                  <p>{messageContent.message}
-                  </p>
-                  {messageContent.image.selectedFile &&
-                    <img style={{
-                      objectFit: 'contain',
-                      width: 100,
-                      height: 100,
-                      borderRadius: 5
-                    }} src={username === messageContent.author ?
-                      `${URL.createObjectURL(messageContent.image.selectedFile)}` : `data:image/png;base64,${btoa(String.fromCharCode(...new
-                        Uint8Array(messageContent.image.selectedFile)))}`} alt="" />}
-                  {messageContent.message.messageList
+            return (
+              <div
+                key={index}
 
-                  }
-                </div>
-                <div className="message-meta">
-                  <p id="time">{messageContent.time}</p>
-                  <p id="author">{messageContent.author}
-                  </p>
+                className={text ? (messageContent.message.includes(text) ? "message" : "d-none") : "message"}
+                id={username === messageContent.author ? "you" : "other"}
+              >
+                <div>
+                  <div className="message-content" style=
+                    {{
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: "0.2rem"
+                    }}>
+                    <p>{messageContent.message}
+                    </p>
+                    {messageContent.image.selectedFile &&
+                      <img style={{
+                        objectFit: 'contain',
+                        width: 100,
+                        height: 100,
+                        borderRadius: 5
+                      }} src={username === messageContent.author ?
+                        `${URL.createObjectURL(messageContent.image.selectedFile)}` : `data:image/png;base64,${btoa(String.fromCharCode(...new
+                          Uint8Array(messageContent.image.selectedFile)))}`} alt="" />}
+
+                    {messageContent.message.messageList}
+
+                  </div>
+                  <div className="message-meta">
+                    <p id="time">{messageContent.time}</p>
+                    <p id="author">{messageContent.author}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-              
+
+
             );
           })}
         </ScrollToBottom>

@@ -296,3 +296,8 @@ input{
 .placeholder {
   color: white;
 }
+
+.btncl:hover{
+  background: #4cacdb;
+  color: #eef1f3;
+}
