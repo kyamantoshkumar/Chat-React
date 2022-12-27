@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import Popup from 'reactjs-popup';
-
-const TableRows = ({ rows, tableRowRemove, onValUpdate }) => { 
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+const TableRows = ({ rows, tableRowRemove, onValUpdate, formObject, onFormSubmit }) => { 
   return rows?.map((rowsData, index) => { 
      const { id, name, profile } = rowsData;
      return (
@@ -41,15 +41,28 @@ const TableRows = ({ rows, tableRowRemove, onValUpdate }) => {
      )
   })
 }
+
+
+// const data = ({value, onValUpdate  }) => {
+//    return value.map((valueData, index ) => {
+//     const { id, name, profile} = valueData;
+//     return (
+//       <tr onValUpdate={data}>{value.id}</tr>
+//     )
+//    })
+// } 
+
 // const memberData = [
 //   {
 //     id: 2123,
 //     Name: "Subham"
 //   },
+
 //   {
 //     id:2234,
 //     Name:'Saurabh'
 //   },
+
 //   {
 //     id:1123,
 //     Name:'Shreyas'
@@ -121,8 +134,21 @@ function Chat({ socket, username, room, data, placeholder }) {
     const data = [...rows];
     data[i][name] = value;
     initRows(data)
+    console.log(data)
   };
-
+  const [tableData, setTableData] = useState([]);
+  const [formObject, setFormObject] = useState({
+    name: "",
+    email: "",
+    profile: "",
+  });
+  const onValChange = (event) => {
+    const value = (res) => ({
+      ...res,
+      [event.target.name]: event.target.value,
+    });
+    setFormObject(value);
+  };
    
 
   useEffect(() => {
@@ -217,7 +243,7 @@ function Chat({ socket, username, room, data, placeholder }) {
                   <h5 className="text-center">Group Memeber</h5>
                 <table>
                   <thead className="col">
-                    <tr className="col justify-content-around">
+                    <tr className="col">
                       <th className="col">Id</th>
                       <th className="col">Name</th>
                       <th className="col">Profile</th>
