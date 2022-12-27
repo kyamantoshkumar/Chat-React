@@ -34,7 +34,7 @@ const TableRows = ({ rows, tableRowRemove, onValUpdate }) => {
            className="form-control"
           />
         </td>
-        <button className="btn btn-secondary" onClick={() => tableRowRemove(index)}>
+        <button className="btn btn-danger" onClick={() => tableRowRemove(index)}>
           Delete Row
         </button>
       </tr>
@@ -97,7 +97,7 @@ function Chat({ socket, username, room, data, placeholder }) {
   const [createTable, setCreateTable] = useState("");
   const onCreateTable = () => {
     alert(
-      'Hello World! "I am mantosh" '
+      ' Yes! I Linked the Device. This device are "Liked from Frontend to Backend" '
     )
   }
  
@@ -164,7 +164,7 @@ function Chat({ socket, username, room, data, placeholder }) {
         >
           <div style={myStyle} className="btn-light text-start rounded-1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
 
-            <h6 className="btn btncli" data-bs-toggle="modal" data-bs-target="#exampleModal">New Member</h6>
+            <button type="button" className="btn btncli" data-bs-toggle="modal" data-bs-target="#exampleModal">New Member</button>
 
             <div className="modal " id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div className="modal-dialog">
@@ -192,18 +192,36 @@ function Chat({ socket, username, room, data, placeholder }) {
                 </div>
               </div>
             </div>
-            <div><h6 onClick={onCreateTable} className="btn btncl">Linked Device</h6></div>
+            <div><h6 onClick={onCreateTable} className="btn btncl">Linked Device</h6>
+            <div className="table-responsive">
+  <table className="table table-bordered table-hover" style={{width: '80%'}}>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Profile</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in contacts">
+        <td>{rows.id}</td>
+        <td>{rows.name}</td>
+        <td>{rows.profile}</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+</div>
             <div><h6 className="btn btncl">Started Message</h6>
                 <div>
                   <h5 className="text-center">Group Memeber</h5>
                 <table>
-                  <thead className="col-md-">
-                    <tr className="justify-content-around">
-                      <th>Id</th>
-                      <th>Name</th>
-                      <th>Profile</th>
-                    
-                    <th>
+                  <thead className="col">
+                    <tr className="col justify-content-around">
+                      <th className="col">Id</th>
+                      <th className="col">Name</th>
+                      <th className="col">Profile</th>
+                      <th>
                     <button className="btn btn-success" onClick={addRowTable}>Insert Row</button>
                     </th>
                     </tr>
