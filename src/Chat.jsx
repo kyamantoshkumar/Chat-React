@@ -2,26 +2,59 @@ import React, { useEffect, useRef, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import Popup from 'reactjs-popup';
 
-
-
-// import SearchIcon from "@material-ui/icons/Search";
-// import CloseIcon from "@material-ui/icons/Close";
-// import Home from "./Components/Home";
-// import "./assets/css/chat.css"
-const memberData = [
-  {
-    id: 2123,
-    Name: "Subham"
-  },
-  {
-    id:2234,
-    Name:'Saurabh'
-  },
-  {
-    id:1123,
-    Name:'Shreyas'
-  },
-];
+const TableRows = ({ rows, tableRowRemove, onValUpdate }) => { 
+  return rows.map((rowsData, index) => {
+     const { id, name, profile } = rowsData;
+     return (
+      <tr key={index}>
+        <td>
+          <input 
+           type="text"
+           value={id}
+           onChnage={(event) => onValUpdate(index.event)}
+           name="id"
+           className="form-control"
+           />
+        </td>
+        <td>
+          <input  
+           type="text"
+           value={name}
+           onChange={(event) => onValUpdate(index, event)}
+           name="name"
+           className="form-control"
+          />
+        </td>
+        <td>
+          <input 
+           type='text'
+           value={profile}
+           onChnage={(event) => onValUpdate(index, event)}
+           name="profile"
+           className="form-control"
+          />
+        </td>
+        <button className="btn btn-secondary" onClick={() => tableRowRemove(index)}>
+          Delete Row
+        </button>
+      </tr>
+     )
+  })
+}
+// const memberData = [
+//   {
+//     id: 2123,
+//     Name: "Subham"
+//   },
+//   {
+//     id:2234,
+//     Name:'Saurabh'
+//   },
+//   {
+//     id:1123,
+//     Name:'Shreyas'
+//   },
+// ];
 
 function Chat({ socket, username, room, data, placeholder }) {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -60,20 +93,35 @@ function Chat({ socket, username, room, data, placeholder }) {
     setText(e.target.value);
   };
 
- 
-  const Author = () => {
-      const [author, setAuthor] = useState("")
-  }
 
   const [createTable, setCreateTable] = useState("");
   const onCreateTable = () => {
     alert(
-    " Hello World"
+      'Hello World! "I am mantosh" '
     )
-    setCreateTable(!createTable);
   }
+ 
+  const [rows, initRows] = useState([])
+  const addRowTable = () => {
+    const data = {
+      id: "",
+      name: "",
+      profile: "",
+    };
+    initRows([...rows, data])
+  }
+   const tableRowRemove = (index) => {
+    const dataRow = [...rows];
+    dataRow.splice(index, 1)
+    initRows(data)
+   }
 
-
+   const onValUpdate = (i, event) => {
+    const  {id, value} = event.target;
+    const data = [...rows];
+    data[i][id] = value;
+    initRows(data)
+  };
   useEffect(() => {
     socket.on("receive_message", (data) => {
       setMessageList((list) => [...list, data]);
@@ -105,21 +153,17 @@ function Chat({ socket, username, room, data, placeholder }) {
             {paragraphEl}
           >
           </p>
-
-
         </div>
-
         <Popup
-
           trigger={<button className="ellipsis" style={{ background: 'transparent', border: 'none' }}><i className="ellipsis fa-solid fa-ellipsis-vertical"></i>
           </button>}
           position="left top" className="bg-primary"
         >
           <div style={myStyle} className="btn-light text-start rounded-1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
 
-            <h6 className="btn btncli" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">New Member</h6>
+            <h6 className="btn btncli" data-bs-toggle="modal" data-bs-target="#exampleModal">New Member</h6>
 
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal " id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div className="modal-dialog">
                 <div className="modal-content">
                   <div className="modal-header">
@@ -147,23 +191,32 @@ function Chat({ socket, username, room, data, placeholder }) {
             </div>
             <div><h6 onClick={onCreateTable} className="btn btncl">Linked Device</h6></div>
             <div><h6 className="btn btncl">Started Message</h6>
-               <div>
+                <div>
+                  <h5 className="text-center">Group Memeber</h5>
                 <table>
-                   <thead>
-                    <th scope="col">Sl No</th>
-                    <th scope="col">Id</th>
-                    <th scope="col">Author</th>
-                   </thead>
-                </table>
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Name</th>
+                      <th>Profile</th>
+                    
+                    <th>
+                    <button className="btn btn-success" onClick={addRowTable}></button>
+                    </th>
+                    </tr>
+                  </thead>
+              <tbody>
                 <tbody>
-                  {memberData.map((author) => {
-                   <tr>
-                      <th scope="row">{author.id}</th>
-                      <th scope="row">{author.Name}</th>
-                   </tr>
-                  })}
+                  <TableRows 
+                   rows={rows}
+                   tableRowRemove={tableRowRemove}
+                   onValUpdate={onValUpdate}
+                  />
                 </tbody>
-               </div>
+              </tbody>
+                </table>
+                </div>
+               
             </div>
             <div><h6 className="btn btncl">Setting</h6></div>
           </div>
@@ -239,42 +292,8 @@ function Chat({ socket, username, room, data, placeholder }) {
 
 export default Chat;
 
-
-
-/*
-     const [myOptions, setMyOptions] = useState([])
  
-          const getDataFromAPI = () => {
-            console.log("Options Fetched from API")
-         
-            fetch('http://dummy.restapiexample.com/api/v1/employees').then((response) => {
-              return response.json()
-            }).then((res) => {
-              console.log(res.data)
-              for (var i = 0; i < res.data.length; i++) {
-                myOptions.push(res.data[i].employee_name)
-              }
-              setMyOptions(myOptions)
-            })
-          }
-
-
-// import TextField from '@material-ui/core/TextField';
-// import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
-
-//    const filterOptions = createFilterOptions ({
-//       matchFrom:'start',
-//       stringify: currentMessage => currentMessage
-//    });
-//    const myCurrentMessage = [messageList]
-
-//   const filterOptions = createFilterOptions({
-//     matchFrom: 'start',
-//     stringify: option => option,
-//   });
-//   const myOptions = ['One Number','Hello', 'Two Number', 'Five Number',
-// 'This is a sample text', 'Dummy text', 'Dropdown option teet',
-// 'Hello text', 'Welcome to text field'];
+/*
 
 import React, { useState, useRef } from "react";
 
@@ -318,22 +337,9 @@ export default function App() {
      3
 */
 
-/* <Autocomplete
-className="text-light"
-freeSolo
-filterOptions={filterOptions}
-options={myOptions}
-renderInput={(params) => (
-<TextField 
-style={{border:'none'}}
-  className="placeholder placeholder-light text-light"
-  {...params}
-  variant="outlined"
-  label ="Search..."
-/>
-// <button className="search placeholder-light" style={{width:'60px', background:'transparent', border:'none'}}><input  className="placeholder placeholder-white text-light bg-dark" type="search" placeholder="search..." 
-//  variant="outlined" {...params} /></button>
-)}
+/* 
+
+
 
    
     {/* <button className="search placeholder-light" style={{width:'60px', background:'transparent', border:'none'}}><input  className="placeholder placeholder-white text-light bg-dark" type="search" placeholder="search..." onChange={handleChange}/></button> 
