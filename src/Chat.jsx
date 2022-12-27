@@ -1,13 +1,27 @@
-import { Table } from "@material-ui/core";
 import React, { useEffect, useRef, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import Popup from 'reactjs-popup';
+
 
 
 // import SearchIcon from "@material-ui/icons/Search";
 // import CloseIcon from "@material-ui/icons/Close";
 // import Home from "./Components/Home";
 // import "./assets/css/chat.css"
+const memberData = [
+  {
+    id: 2123,
+    Name: "Subham"
+  },
+  {
+    id:2234,
+    Name:'Saurabh'
+  },
+  {
+    id:1123,
+    Name:'Shreyas'
+  },
+];
 
 function Chat({ socket, username, room, data, placeholder }) {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -46,26 +60,12 @@ function Chat({ socket, username, room, data, placeholder }) {
     setText(e.target.value);
   };
 
-  const memberData = [
-    {
-      id: 2123,
-      Name: "Subham"
-    },
-    {
-      id:2234,
-      Name:'Saurabh'
-    },
-    {
-      id:1123,
-      Name:'Shreyas'
-    },
-  ];
-  
+ 
   const Author = () => {
       const [author, setAuthor] = useState("")
   }
 
-  const [createTable, setCreateTable] = React.useState("");
+  const [createTable, setCreateTable] = useState("");
   const onCreateTable = () => {
     alert(
     " Hello World"
