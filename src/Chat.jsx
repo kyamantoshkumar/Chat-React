@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import Popup from 'reactjs-popup';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-const TableRows = ({ rows, tableRowRemove, onValUpdate, formObject, onFormSubmit }) => { 
-  return rows?.map((rowsData, index) => { 
+const TableRows = ({ rows, tableRowRemove, onValUpdate, tableFormSubmit, onFormSubmit }) => { 
+  return rows?.map((rowsData, index ) => { 
      const { id, name, profile } = rowsData;
      return (
       <tr key={index}>
@@ -37,21 +37,28 @@ const TableRows = ({ rows, tableRowRemove, onValUpdate, formObject, onFormSubmit
         <button className="btn btn-danger" onClick={() => tableRowRemove(index)}>
           Delete Row
         </button>
+        {/* <div className="d-grid">
+        <button
+          type="submit"
+          onClick={() => tableFormSubmit(data)}
+          className="btn btn-success"
+        >submit</button>
+      </div> */}
       </tr>
      )
   })
 }
 
 
-const data = ({value, onValUpdate  }) => {
-   return value.map((rowsData, index ) => {
-    const { data } = rowsData
-    return (
+// const data = ({value, onValUpdate  }) => {
+//    return value.map((rowsData, index ) => {
+//     const { data } = rowsData
+//     return (
       
-      <tr onValUpdate={data}>{onValUpdate.rowsData}</tr>
-    )
-   })
-} 
+//       <tr onValUpdate={data}>{onValUpdate.rowsData}</tr>
+//     )
+//    })
+// } 
 
 // const memberData = [
 //   {
@@ -108,7 +115,6 @@ function Chat({ socket, username, room, data, placeholder }) {
   };
 
 
-  const [createTable, setCreateTable] = useState("");
   const onCreateTable = () => {
     alert(
       ' Yes! I Linked the Device. This device are "Liked from Frontend to Backend" '
@@ -145,7 +151,34 @@ function Chat({ socket, username, room, data, placeholder }) {
     });
     addRowTable(data);
   };
-   
+  // const onFormSubmit = (event) => {
+  //   event.target.value(data);
+  //   const checkVal = !Object.values(rows).every((res) => res === "");
+  //   if (checkVal) {
+  //     const dataObj = (data) => [...data, rows];
+  //      TableRows(dataObj);
+  //     const isEmpty = { id: "", name: "", profile: "" };
+  //    TableRows(isEmpty);
+  //   }
+  //   console.log(onFormSubmit);
+  // };
+
+
+  const transferValue = (event) => {
+    event.preventDefault();
+    const val = {
+     data:''
+    };
+    event.data(val);
+    // clearState();
+  };
+  
+  // const clearState = () => {
+  //   setName('');
+  //   setCity('');
+  // };
+ 
+  // const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
@@ -166,8 +199,8 @@ function Chat({ socket, username, room, data, placeholder }) {
         <div>
 
           <input
-            style={{ myStyle, placeholder: 'white' }}
-            className="placeholder placeholder-white"
+            style={ myStyle }
+            className="placeholder color-light bg-transparent placeholder-white"
             type="text"
             placeholder="Search... "
             value={text}
@@ -233,7 +266,7 @@ function Chat({ socket, username, room, data, placeholder }) {
         <td>{rows.profile}</td>
       </tr>
         })
-      }
+      } 
       
     </tbody>
   </table>
@@ -242,14 +275,17 @@ function Chat({ socket, username, room, data, placeholder }) {
             <div><h6 className="btn btncl">Started Message</h6>
                 <div>
                   <h5 className="text-center">Group Memeber</h5>
-                <table>
-                  <thead className="col">
-                    <tr className="col">
+                  <form>
+                  <table>
+                  <thead className="col d-flex">
+                    <tr className="col d-flex bg-info">
                       <th className="col">Id</th>
                       <th className="col">Name</th>
                       <th className="col">Profile</th>
+                      </tr>
+                      <tr>
                       <th>
-                    <button className="btn btn-success" onClick={addRowTable}>Insert Row</button>
+                    <button className="btn btn-secondary" onClick={addRowTable}>Insert Row</button>
                     </th>
                     </tr>
                   </thead>
@@ -262,10 +298,13 @@ function Chat({ socket, username, room, data, placeholder }) {
                    onValChange={onValChange}
                   />
                 </tbody>
+                <tr className="text-end">
+                <button className="btn btn-warning text-center w-100" onClick={() => transferValue(data)}>Save Data</button>
+                </tr>
               </tbody>
                 </table>
+                  </form>
                 </div>
-               
             </div>
             <div><h6 className="btn btncl">Setting</h6></div>
           </div>
@@ -281,7 +320,7 @@ function Chat({ socket, username, room, data, placeholder }) {
 
                 className={text ? (messageContent.message.includes(text) ? "message" : "d-none") : "message"}
                 id={username === messageContent.author ? "you" : "other"}
-              >
+                 >
                 <div>
                   <div className="message-content" style=
                     {{
@@ -300,9 +339,6 @@ function Chat({ socket, username, room, data, placeholder }) {
                       }} src={username === messageContent.author ?
                         `${URL.createObjectURL(messageContent.image.selectedFile)}` : `data:image/png;base64,${btoa(String.fromCharCode(...new
                           Uint8Array(messageContent.image.selectedFile)))}`} alt="" />}
-
-                    {messageContent.message.messageList}
-
                   </div>
                   <div className="message-meta">
                     <p id="time">{messageContent.time}</p>
