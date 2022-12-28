@@ -265,17 +265,27 @@ body {
 }
 
 .placeholder {
-  text-align: white !important;
+   /* text-align: white !important;  */
   border: none;
   margin-left: 29%;
   margin-top: 10px;
-  background-color: lightblue;
+  background-color: rgb(243, 246, 247);
   /* color: white !important; */
   width: 100px;
   background: transparent;
   box-shadow: none;
   border-radius: none;
+  color: white;
 }
+
+/* .placeholder {
+  display: inline-block;
+  min-height: 1em;
+  vertical-align: middle;
+  cursor: wait;
+  background-color: currentcolor;
+  opacity: .5;
+} */
 
 .ellipsis {
   color: white !important;
