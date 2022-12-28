@@ -151,33 +151,17 @@ function Chat({ socket, username, room, data, placeholder }) {
     });
     addRowTable(data);
   };
-  // const onFormSubmit = (event) => {
-  //   event.target.value(data);
-  //   const checkVal = !Object.values(rows).every((res) => res === "");
-  //   if (checkVal) {
-  //     const dataObj = (data) => [...data, rows];
-  //      TableRows(dataObj);
-  //     const isEmpty = { id: "", name: "", profile: "" };
-  //    TableRows(isEmpty);
-  //   }
-  //   console.log(onFormSubmit);
-  // };
-
-
-  const transferValue = (event) => {
+  const onFormSubmit = (event) => {
     event.preventDefault();
-    const val = {
-     data:''
-    };
-    event.data(val);
-    // clearState();
+    const checkVal = !Object.values(rows).every((res) => res === "");
+    if (checkVal) {
+      const dataObj = (data) => [...data, rows];
+       TableRows(dataObj);
+      const isEmpty = { id: "", name: "", profile: "" };
+     TableRows(isEmpty);
+    }
+    console.log(onFormSubmit);
   };
-  
-  // const clearState = () => {
-  //   setName('');
-  //   setCity('');
-  // };
- 
   // const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
@@ -275,8 +259,7 @@ function Chat({ socket, username, room, data, placeholder }) {
             <div><h6 className="btn btncl">Started Message</h6>
                 <div>
                   <h5 className="text-center">Group Memeber</h5>
-                  <form>
-                  <table>
+                <table>
                   <thead className="col d-flex">
                     <tr className="col d-flex bg-info">
                       <th className="col">Id</th>
@@ -299,12 +282,12 @@ function Chat({ socket, username, room, data, placeholder }) {
                   />
                 </tbody>
                 <tr className="text-end">
-                <button className="btn btn-warning text-center w-100" onClick={() => transferValue(data)}>Save Data</button>
+                <button className="btn btn-warning text-center w-100" onClick={() => onFormSubmit(rows)}>Save Data</button>
                 </tr>
               </tbody>
                 </table>
-                  </form>
                 </div>
+               
             </div>
             <div><h6 className="btn btncl">Setting</h6></div>
           </div>
@@ -320,7 +303,7 @@ function Chat({ socket, username, room, data, placeholder }) {
 
                 className={text ? (messageContent.message.includes(text) ? "message" : "d-none") : "message"}
                 id={username === messageContent.author ? "you" : "other"}
-                 >
+              >
                 <div>
                   <div className="message-content" style=
                     {{
