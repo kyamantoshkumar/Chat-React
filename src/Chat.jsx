@@ -7,7 +7,7 @@ const TableRows = ({ rows, tableRowRemove, onValUpdate, tableFormSubmit, onFormS
      const { id, name, profile } = rowsData;
      return (
       <tr key={index}>
-        <td>
+        <td> 
           <input 
            type="text"
            value={id}
@@ -151,8 +151,9 @@ function Chat({ socket, username, room, data, placeholder }) {
     });
     addRowTable(data);
   };
+
   const onFormSubmit = (event) => {
-    event.preventDefault();
+    //  event.preventDefault();
     const checkVal = !Object.values(rows).every((res) => res === "");
     if (checkVal) {
       const dataObj = (data) => [...data, rows];
@@ -162,7 +163,28 @@ function Chat({ socket, username, room, data, placeholder }) {
     }
     console.log(onFormSubmit);
   };
+
   // const [tableData, setTableData] = useState([]);
+  const [id, setId] = useState('');
+  const [name, setName] = useState('');
+  const [profile, setProfile] = useState('');
+  
+  const transferValue = (event) => {
+    event.preventDefault();
+    const val = {
+      id:'',
+      name:'',
+      profile:'',
+    };
+    //  props.func(val);
+    clearState();
+  };
+  const clearState = () => {
+    setId('');
+    setName('');
+    setProfile('');
+  };
+  
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
@@ -243,7 +265,7 @@ function Chat({ socket, username, room, data, placeholder }) {
     </thead>
     <tbody>
       {
-        rows.map((rows) => {
+        rows.map((props) => {
 <tr ng-repeat="item in contacts">
         <td>{rows.id}</td>
         <td>{rows.name}</td>
@@ -287,7 +309,6 @@ function Chat({ socket, username, room, data, placeholder }) {
               </tbody>
                 </table>
                 </div>
-               
             </div>
             <div><h6 className="btn btncl">Setting</h6></div>
           </div>
@@ -330,8 +351,6 @@ function Chat({ socket, username, room, data, placeholder }) {
                   </div>
                 </div>
               </div>
-
-
             );
           })}
         </ScrollToBottom>
