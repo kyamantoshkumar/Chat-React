@@ -269,13 +269,15 @@ body {
   border: none;
   margin-left: 29%;
   margin-top: 10px;
-  background-color: rgb(243, 246, 247);
+  /* background-color: rgb(247, 248, 248); */
   /* color: white !important; */
   width: 100px;
-  background: transparent;
+  /* background: transparent; */
   box-shadow: none;
   border-radius: none;
+  opacity: none;
   color: white;
+  /* color: #c8f3d8; */
 }
 
 /* .placeholder {
