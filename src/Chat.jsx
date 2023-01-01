@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import Popup from 'reactjs-popup';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// import ReagestrationPage from "./ChatFolder/Registration";
+import User from "./ChatFolder/User"
 
 const TableRows = ({ rows, tableRowRemove, onValUpdate, tableRowSubmit }) => {
 
@@ -57,7 +59,7 @@ function Chat({ socket, username, room, data, placeholder }) {
   const onFileChange = event => {
     setImage({ selectedFile: event.target.files[0] });
   };
-  const [datavalues, setDataValues] = useState();
+
 
   const sendMessage = async () => {
     if (currentMessage !== " " || image !== 0) {
@@ -90,9 +92,10 @@ function Chat({ socket, username, room, data, placeholder }) {
 
   const onCreateTable = () => {
     alert(
-      ' Yes! I Linked the Device. This device are "Liked from Frontend to Backend" '
+      <User/>
     )
   }
+  const [datavalues, setDataValues] = useState();
 
   const [rows, initRows] = useState([])
   const addRowTable = () => {
@@ -103,6 +106,7 @@ function Chat({ socket, username, room, data, placeholder }) {
     };
     initRows([...rows, data])
   }
+
   const tableRowRemove = (index) => {
     const dataRow = [...rows];
     dataRow.splice(index, 1)
@@ -133,7 +137,6 @@ const tableRowSubmit = (index) => {
     });
     addRowTable(data);
   };
-
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
@@ -173,9 +176,9 @@ const tableRowSubmit = (index) => {
         >
           <div style={myStyle} className=" btn-light rounded-1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
 
-            <button type="button" className="btn btncli" data-bs-toggle="modal" data-bs-target="#exampleModal">New Member</button>
-
-            <div className="modal " id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <button type="button" className="btn btncli" data-bs-toggle="modal" data-bs-target="#exampleModal">New Member<User /> </button>
+            {/* <User/> */}
+            {/* <div className="modal " id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div className="modal-dialog">
                 <div className="modal-content">
                   <div className="modal-header">
@@ -200,9 +203,10 @@ const tableRowSubmit = (index) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="w-75"><h6 onClick={onCreateTable} className="btn btncl">Linked Device</h6>
+           
               <div className="table-responsive">
                 <table className="table table-bordered table-hover" style={{  }}>
                   <thead>
@@ -223,7 +227,7 @@ const tableRowSubmit = (index) => {
                         </tr>
                       ))
                     }
-
+                   
                   </tbody>
                 </table>
               </div>
