@@ -110,6 +110,7 @@ const [confirmPassword, setConfirmPassword] = useState('');
 const [submitted, setSubmitted] = useState(false);
 const [error, setError] = useState(false);
 
+
 // Handling the name change
 const handleName = (e) => {
 	setName(e.target.value);
@@ -136,13 +137,31 @@ const handleConfirmPassword = (e) => {
 // Handling the form submission
 const handleSubmit = (e) => {
 	e.preventDefault();
-	if (name === '' || email === '' || password === '' || confirmPassword === 'fill') {
+	if (name === '' || email === '' || password === '' || confirmPassword === 'matched') {
 	setError(true);
 	} else {
 	setSubmitted(true);
 	setError(false);
 	}
 };
+const handleSubmitCheck = () => {
+    const { password, confirmPassword } = () => {;
+    // perform all neccassary validations
+    if (password !== confirmPassword) {
+        alert("Passwords don't match");
+    } else {
+        // make API call
+    }
+}
+}
+
+
+//   setConfirmPassword = (event) => {
+//     if (event.target.value !== password) {
+//       message.error('error');
+//       alert("Password don't match")
+//     }
+// }
 
 // Showing success message
 const successMessage = () => {
@@ -152,7 +171,7 @@ const successMessage = () => {
 		style={{
 		display: submitted ? '' : 'none',
 		}}>
-		<h1 className='bg-success text-light py-2 px-3 rounded fw-bold'>User {name} successfully registered!!</h1>
+		<h6 className='bg-success text-light py-2 px-3 rounded fw-bold'>User {name} successfully registered!!</h6>
 	</div>
 	);
 };
@@ -165,30 +184,31 @@ const errorMessage = () => {
 		style={{
 		display: error ? '' : 'none',
 		}}>
-		<h1 className='bg-danger text-light py-2 px-3 rounded fw-bold'>Please enter all the fields</h1>
+		<h5 className='bg-danger text-light py-2 px-3 rounded fw-bold'>Please enter all the fields</h5>
 	</div>
 	);
 };
 const myStyle = {
-    width:"20rem",
+    width:"24rem",
     height: "4rem",
     body: "center",
-    fontFamily:'text new roman'
+    // fontFamily:'text new roman',
+	
     
      }
 
 return (
-	<div className='container bg-secondary'>
+	<div className='container  '>
         <div className='col-md-4 col-sm-12'>
-        1 of 4
+        {/* 1 of 4 */}
         </div>
-        <div className='col-md-8 col-sm-12 '>
-         <div className='col-md-12 col-sm-12'>
+        <div className='col-md-8 col-sm-12 my-4 mx-auto w-50 p-5 '>
+         <div className='col-md-12 col-sm-12  '>
             <div className='row'>
               <div>
-              <div className="form">
+              <div className="form-form">
 	<div>
-		<h1 className='fs-3 bg-white fw-bold ff-timeeNewRoman text-black text-center py-2 rounded'>User Registration</h1>
+		<h1 className='fs-3 fw-bold ff-timeeNewRoman text-center py-2 rounded bg-primary text-light my-3'>User Registration</h1>
 	</div>
 
 	{/* Calling to the methods */}
@@ -197,13 +217,13 @@ return (
 		{successMessage()}
 	</div>
 
-	<form>
-        <table>
+	<form className='form-control'>
+        <table className='ms-4'>
             <thead>
                 <th>
                     <tr>
                         {/* Labels and inputs for form data */}
-		<label className="label fs-4" htmlFor="user">Name</label>
+		<label className="label fs-4 mt-2" htmlFor="user">Name</label>
 		<input 
         style={myStyle} 
         onChange={handleName} 
@@ -238,11 +258,11 @@ return (
         style={myStyle} 
         onChange={handleConfirmPassword} 
         className="input form-control"
-		value={password} 
+		value={confirmPassword} 
         type="password" 
         placeholder='Enter Confirm Password'/>
            
-		<button onClick={handleSubmit} className="btn btn-success my-3" type="submit">
+		<button onClick={handleSubmit} className="btn btn-success my-3 w-100 " type="submit">
 		Submit
 		</button>
 
