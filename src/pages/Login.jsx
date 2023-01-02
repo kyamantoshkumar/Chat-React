@@ -40,6 +40,7 @@ const Login = () => {
         }
         navigate("/room")
     };
+
     const errorMessage = () => {
         return (
             <div
@@ -68,34 +69,32 @@ const Login = () => {
         width: "20rem",
         height: "4rem",
         body: "center",
-        fontFamily: 'text new roman'
-
+        // fontFamily: 'text new roman'
     }
     return (
         <>
-            <div className="conatiner bg-secondary ">
+            <div className="conatiner">
                 <div className="col-md-8 col-sm-12">
-                    1 of 8
+                    {/* 1 of 8 */}
                 </div>
-                <div className="col-md-4 col-sm-12 mx-5">
-                    <div className="col-md-12 col-sm-12 px-4">
+                <div className="col-md-4 col-sm-12">
+                    <div className="col-md-12 col-sm-12 form-control">
                         <div className="row">
-
+                       
                             <div className="messages">
                                 {errorMessage()}
                                 {successMessage()}
                             </div>
-                            <form>
-                                <div>
+                                <h6 className="fs-3 bg-primary fw-bold ff-timeeNewRoman text-light text-center py-2 rounded">Login Page</h6>
+                                <form className="form-control w-100">
                                     <table>
                                         <thead>
                                             <th>
-                                                <h6 className="fs-3 bg-white fw-bold ff-timeeNewRoman text-black text-center py-2 rounded">Login Page</h6>
                                                 <tr>
                                                     <label className="fs-3" htmlFor="user">User Email</label>
                                                     <input
                                                         style={myStyle}
-                                                        className="form-control"
+                                                        className="input form-control"
                                                         type="email"
                                                         value={email}
                                                         placeholder="Enter User..."
@@ -105,7 +104,7 @@ const Login = () => {
                                                     <label className="fs-3" htmlFor="email">User Passowrd</label>
                                                     <input
                                                         style={myStyle}
-                                                        className="form-control"
+                                                        className="input form-control"
                                                         type="password"
                                                         value={password}
                                                         placeholder="Enter password..."
@@ -114,13 +113,13 @@ const Login = () => {
                                                 </tr>
                                                 <tr>
                                                     <button className="btn btn-success my-3 mw-100" onClick={handleSubmit}>Login</button>
-                                                    <button  onClick={()=>navigate("/registration")}>Registration</button>
+                                                    <button className="btn btn-primary mx-3" onClick={()=>navigate("/registration")}>Registration</button>
                                                 </tr>
                                             </th>
                                         </thead>
+                                        
                                     </table>
-                                </div>
-                            </form>
+                                    </form>
                         </div>
                     </div>
                 </div>
