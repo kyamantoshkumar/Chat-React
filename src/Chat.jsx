@@ -146,7 +146,8 @@ const tableRowSubmit = (index) => {
 
   const myStyle = {
     fontFamily: 'Text New Roman',
-    background: '#f8fcfd'
+    background: '#fffsdff',
+    placeholder:'light',
   }
 
   return (
@@ -158,7 +159,7 @@ const tableRowSubmit = (index) => {
 
           <input
             style={myStyle}
-            className="placeholder text-light bg-transparent placeholder-light opacity-3"
+            className="placeholder text-light bg-transparent placeholder-light"
             type="text"
             placeholder="Search... "
             value={text}
@@ -170,11 +171,11 @@ const tableRowSubmit = (index) => {
           </p>
         </div>
         <Popup
-          trigger={<button className="ellipsis" style={{ background: 'transparent', border: 'none' }}><i className="ellipsis fa-solid fa-ellipsis-vertical"></i>
+          trigger={<button className=" ellipsis" style={{ background: 'transparent', border: 'none' }}><i className="ellipsis fa-solid fa-ellipsis-vertical"></i>
           </button>}
           position="left top" className="bg-primary"
         >
-          <div style={myStyle} className=" btn-light rounded-1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
+          <div style={myStyle} className=" btn-light rounded-1 mx-auto" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
 
             <button type="button" className="btn btncli" data-bs-toggle="modal" data-bs-target="#exampleModal">New Member</button>
             {/* <User/> */}
@@ -205,7 +206,7 @@ const tableRowSubmit = (index) => {
               </div>
             </div> */}
 
-            <div className="w-75"><h6 onClick={onCreateTable} className="btn btncl">Linked Device</h6>
+            <div className="w-50 mx-auto"><h6 onClick={onCreateTable} className="btn btncl">Linked Device</h6>
            
               <div className="table-responsive">
                 <table className="table table-bordered table-hover" style={{  }}>
@@ -232,8 +233,8 @@ const tableRowSubmit = (index) => {
                 </table>
               </div>
             </div>
-            <div><h6 className="btn btncl">Started Message</h6>
-              <div className="w-75 text-end">
+            <div className="mx-auto"><h6 className="btn btncl">Started Message</h6>
+              <div className="w-50 mx-auto">
                 <h5 className="text-center">Group Memeber</h5>
                 <table>
                   <thead className="col d-flex mx-2">
