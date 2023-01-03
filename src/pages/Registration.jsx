@@ -6,9 +6,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const  Registration = () =>  {
 
-// Navigate are link to ligin form
-// const navigate = useNavigate()
-const notify = () => toast("ASDF");
+const notify = () =>{ 
+	toast.error( () => {
+		if(name === '' || email === '' || password === '' || confirmPassword === 'matched' ) {
+			toast.error("Valid value")
+		}else{
+            toast.error("Invalid Error")
+		}
+	}) 
+};
 // States for registration
 const [name, setName] = useState('');
 const [email, setEmail] = useState('');
@@ -56,25 +62,29 @@ const handleSubmit = (e) => {
 	}
 
 	// perform all neccassary validations
-    if (password !== confirmPassword) {
-        alert("Passwords don't match");
+if (password !== confirmPassword) {
+    setPassword("Passwords match");
+	  return(
+		toast("Passwords don't match")
+		) 
     } else {
         // make API call
+	  setPassword("Passwords don't match")
     }
 
-  if(name ? "!@#$%1223" : " ") {
-	   alert("Vale false")
-  } else {
-   setName(false)
-   alert(" Value pass")
-  }
+      if(name ? "A to Z && a to z" : "") {
+	   toast("Vale false")
+      } else {
+       setName(false)
+        alert(" Value pass")
+        }
 	// var password = show ? "Hide Component" : "Show Component";
     //    if { show ? "Hide Component" : "Show Component"}
-
-	toast("Passwords don't match")
+	notify("Passwords don't match")
 
 	// navigate("/")
  };
+
 
 // Showing success message
 const successMessage = () => {
@@ -98,18 +108,21 @@ const errorMessage = () => {
 		style={{
 		display: error ? '' : 'none',
 		}}>
+			
 		<h5 style={{background:'#f79d9d'}} className='text-center text-danger py-2 px-3 rounded fw-bold'>Please enter all the fields</h5>
 	</div>
+	
 	);
+	
 };
+toast.error("Please enter all the fields")
+
 const myStyle = {
     width:"30rem",
     height: "4rem",
     body: "center",
 	box:'3d'
     // fontFamily:'text new roman',
-
-
      }
 const myFont = {
 		fontFamily: 'serif'
@@ -140,7 +153,7 @@ return (
             <thead>
                 <th>
                     <tr>
-                        {/* Labels and inputs for form data */}
+        {/* Labels and inputs for form data */}
 		<label style={myFont} className="label fs-4 mt-2" htmlFor="user">Name</label>
 		<input
         style={myStyle}
@@ -148,6 +161,7 @@ return (
         className="input form-control"
 		value={name}
         type="name"
+		name="name"
         placeholder='Enter Name...' />
           </tr>
           <tr>
@@ -158,6 +172,7 @@ return (
         className="input form-control"
 		value={email}
         type="email"
+		name='email'
         placeholder="Enter email..." />
         </tr>
           <tr>
@@ -185,12 +200,14 @@ return (
 		</button> */}
 		{/* <button style={{background:'#82fdb1'}} className="btn text-primary  my-3 fs-6 mb-3  w-100" onClick={() => notify("Password don't matched")(handleSubmit)}>Submit</button> */}
 		<button style={{background:'#82fdb1'}} className="btn text-primary  my-3 fs-6 mb-3  w-100" onClick={handleSubmit}>Submit</button>
-
+		<button style={{background:'#82fdb1'}} className="btn text-primary  my-3 fs-6 mb-3  w-100" onClick={notify}>Check It</button>
+		<ToastContainer/>
+		{/* <button onClick={notify}>Click Me!</button> */}
                     </tr>
                 </th>
             </thead>
         </table>
-		 	</form>
+		</form>
 	</div>
               </div>
             </div>
