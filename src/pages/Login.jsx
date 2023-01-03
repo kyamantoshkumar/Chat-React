@@ -66,7 +66,7 @@ const Login = () => {
     };
 
     const myStyle = {
-        width: "20rem",
+        width: "25rem",
         height: "4rem",
         body: "center",
         // fontFamily: 'text new roman'
@@ -77,19 +77,19 @@ const Login = () => {
     }
     return (
         <>
-            <div className="conatiner">
+            <div className="container">
                 <div className="col-md-8 col-sm-12">
                     {/* 1 of 8 */}
                 </div>
-                <div className="col-md-4 col-sm-12 mx-auto w-75 px-5">
-                    <div className="col-md-12 col-sm-12">
+                <div className="col-md-4 col-sm-12 mx-auto w-50 px-5">
+                    <div className="col-md-12 col-sm-12 px-4 mx-3">
                         <div className="row">
                             <div className="messages">
                                 {errorMessage()}
                                 {successMessage()}
                             </div>
-                            <h6 style={{background:'#b078fa'}} className="fs-3 fw-bold text-light text-center py-2 rounded">Login Page</h6>
-                            <form className="form-control w-100 px-4" style={{background:'#c1d8fc'}}>
+                            <h6 style={{background:'#b078fa'}} className="fs-3 fw-bold text-light text-center py-2 rounded shadow">Login Page</h6>
+                            <form className="form-control w-100 px-4 shadow" style={{background:'#cfe7f5'}}>
 
                                 <table className="ms-4">
                                     <thead>
@@ -116,8 +116,8 @@ const Login = () => {
                                                 {/* <input type="text" name="passw" id="passw" value={email} onChange={(e)=>setEmail(e.target.value)}/>  */}
                                             </tr>
                                             <tr>
-                                                <button style={{background:'#7afcb0'}} className="btn mt-3 my-1 fs-6 w-100 text-success" onClick={handleSubmit}>Login</button>
-                                                <button style={{background:'#91b9f5'}}className="btn text-primary fs-6 mb-3  w-100" onClick={() => navigate("/registration")}>Registration</button>
+                                                <button style={{background:'#7afcb0'}} className="btn mt-3 my-1 fs-6 w-100 text-bold text-success" onClick={handleSubmit}>Login</button>
+                                                <button style={{background:'#91b9f5'}}className="btn text-primary fs-6 mb-3 text-bold  w-100" onClick={() => navigate("/registration")}>Registration</button>
                                             </tr>
                                         </th>
                                     </thead>
