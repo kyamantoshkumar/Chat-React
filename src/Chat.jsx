@@ -177,7 +177,7 @@ const tableRowSubmit = (index) => {
         >
           <div style={myStyle} className=" btn-light rounded-1 mx-auto" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
 
-            <button type="button" className="btn btncli" data-bs-toggle="modal" data-bs-target="#exampleModal">New Member</button>
+            <button type="button" className="btn btncli" data-bs-toggle="modal-sm" data-bs-target="#exampleModal">New Member</button>
             {/* <User/> */}
             {/* <div className="modal " id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div className="modal-dialog">
