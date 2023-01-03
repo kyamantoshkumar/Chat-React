@@ -1,8 +1,14 @@
-
+import React from 'react';
 import { useState } from 'react';
+// import { useNavigate } from "react-router-dom"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function Registration() {
+const  Registration = () =>  {
 
+// Navigate are link to ligin form
+// const navigate = useNavigate()
+const notify = () => toast("ASDF");
 // States for registration
 const [name, setName] = useState('');
 const [email, setEmail] = useState('');
@@ -48,7 +54,7 @@ const handleSubmit = (e) => {
 	setSubmitted(true);
 	setError(false);
 	}
-  
+
 	// perform all neccassary validations
     if (password !== confirmPassword) {
         alert("Passwords don't match");
@@ -56,12 +62,19 @@ const handleSubmit = (e) => {
         // make API call
     }
 
+  if(name ? "!@#$%1223" : " ") {
+	   alert("Vale false")
+  } else {
+   setName(false)
+   alert(" Value pass")
+  }
 	// var password = show ? "Hide Component" : "Show Component";
-    //    if { show ? "" : "Show Component"}
+    //    if { show ? "Hide Component" : "Show Component"}
+
+	toast("Passwords don't match")
+
+	// navigate("/")
  };
-
-
-
 
 // Showing success message
 const successMessage = () => {
@@ -72,7 +85,7 @@ const successMessage = () => {
 		display: submitted ? '' : 'none',
 		}}>
 		<h6 style={{background:'#5fff8f'}} className='text-center text-success py-2 px-3 rounded fw-bold'>User {name} successfully registered!!</h6>
-		
+
 	</div>
 	);
 };
@@ -95,8 +108,8 @@ const myStyle = {
     body: "center",
 	box:'3d'
     // fontFamily:'text new roman',
-	
-    
+
+
      }
 const myFont = {
 		fontFamily: 'serif'
@@ -129,47 +142,49 @@ return (
                     <tr>
                         {/* Labels and inputs for form data */}
 		<label style={myFont} className="label fs-4 mt-2" htmlFor="user">Name</label>
-		<input 
-        style={myStyle} 
-        onChange={handleName} 
+		<input
+        style={myStyle}
+        onChange={handleName}
         className="input form-control"
-		value={name} 
-        type="text"
+		value={name}
+        type="name"
         placeholder='Enter Name...' />
           </tr>
-          <tr>  
+          <tr>
 		<label style={myFont} className="label fs-4" htmlFor="email">Email</label>
-		<input 
-        style={myStyle} 
-        onChange={handleEmail} 
+		<input
+        style={myStyle}
+        onChange={handleEmail}
         className="input form-control"
-		value={email} 
-        type="email" 
+		value={email}
+        type="email"
         placeholder="Enter email..." />
         </tr>
           <tr>
 		<label style={myFont} className="label fs-4" htmlFor="password">Password</label>
-		<input 
-        style={myStyle} 
-        onChange={handlePassword} 
+		<input
+        style={myStyle}
+        onChange={handlePassword}
         className="input form-control"
-		value={password} 
-        type="password" 
+		value={password}
+        type="password"
         placeholder='Enter Password...'/>
         </tr>
         <tr>
         <label style={myFont} className="label fs-4" htmlFor='confirmPassword'>Confirm Password</label>
-		<input 
-        style={myStyle} 
-        onChange={handleConfirmPassword} 
+		<input
+        style={myStyle}
+        onChange={handleConfirmPassword}
         className="input form-control"
-		value={confirmPassword} 
-        type="password" 
+		value={confirmPassword}
+        type="password"
         placeholder='Enter Confirm Password...'/>
-           
-		<button style={{background:'#82fdb1'}} onClick={handleSubmit} className="btn text-success  my-3 w-100 " type="submit">
+
+		{/* <button style={{background:'#82fdb1'}} onClick={() => navigate("/") (handleSubmit)} className="btn text-success  my-3 w-100 " type="submit">
 		Submit
-		</button>
+		</button> */}
+		{/* <button style={{background:'#82fdb1'}} className="btn text-primary  my-3 fs-6 mb-3  w-100" onClick={() => notify("Password don't matched")(handleSubmit)}>Submit</button> */}
+		<button style={{background:'#82fdb1'}} className="btn text-primary  my-3 fs-6 mb-3  w-100" onClick={handleSubmit}>Submit</button>
 
                     </tr>
                 </th>
@@ -184,6 +199,7 @@ return (
     </div>
 );
 }
+export default Registration
 
 
 
@@ -261,7 +277,7 @@ return (
 //                                                 value={registerData.confirmPassword}
 //                                                 placeholder="Confirm Password..."
 //                                                 onChange={(e) => setRegisterData({
-                                                   
+
 //                                                     name: registerData.name,
 //                                                     email: registerData.email,
 //                                                     password: registerData.password,
