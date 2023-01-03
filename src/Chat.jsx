@@ -171,42 +171,77 @@ const tableRowSubmit = (index) => {
           </p>
         </div>
         <Popup
-          trigger={<button className=" ellipsis" style={{ background: 'transparent', border: 'none' }}><i className="ellipsis fa-solid fa-ellipsis-vertical"></i>
+          trigger={<button className="ellipsis" style={{ background: 'transparent', border: 'none' }}><i className="ellipsis fa-solid fa-ellipsis-vertical"></i>
           </button>}
           position="left top" className="bg-primary"
         >
-          <div style={myStyle} className=" btn-light rounded-1 mx-auto" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
+          <div style={myStyle} className="btn-light rounded-1 mx-auto" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
 
-            <button type="button" className="btn btncli" data-bs-toggle="modal-sm" data-bs-target="#exampleModal">New Member</button>
-            {/* <User/> */}
-            {/* <div className="modal " id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div className="modal-dialog">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">New Member</h5>
-                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div className="modal-body">
-                    <form>
-                      <div className="mb-3">
-                        <label htmlFor="recipient-name" className="col-form-label">Id:</label>
-                        <input type="text" className="form-control" id="recipient-id" />
-                      </div>
-                      <div className="mb-3">
-                        <label htmlFor="message-text" className="col-form-label">Author:</label>
-                        <input type="text" className="form-control" id="recipient-author" />
-                      </div>
-                    </form>
-                  </div>
-                  <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close Group</button>
-                    <button type="button" className="btn btn-primary">Add Member</button>
-                  </div>
-                </div>
+            {/* <div type="button" className="btn btncli" data-bs-toggle="modal-sm" data-bs-target="#exampleModal">New Member */}
+            <button type="button" className="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Right popover">
+                Popover on left
+            </button>  
+
+<div type="button" className="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">New Member</div>
+
+<div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div className="modal-body">
+        <form>
+          <div className="mx-auto"><h6 className="btn btncl">Started Message</h6>
+              <div className="w-50 mx-auto">
+                <h5 className="text-center">Group Memeber</h5>
+                <table>
+                  <thead className="col d-flex mx-2">
+                    <tr className="col d-flex">
+                      <th className="col">Id</th>
+                      <th className="col">Name</th>
+                      <th className="col">Profile</th>
+                    </tr>
+                    <tr>
+                      <th className="me-5 ">
+                        <button className="btn btn-secondary mx-2  h-75 w-100" onClick={addRowTable}>Insert </button>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tbody>
+                      <TableRows
+                        rows={rows}
+                        tableRowRemove={tableRowRemove}
+                        onValUpdate={onValUpdate}
+                        onValChange={onValChange}
+                        tableRowSubmit={tableRowSubmit}
+                      />
+                    </tbody>
+                    <tr className="text-end">
+                      <button style={{background:'#c8f3d8'}} className="btn text-center w-100" onClick={() => tableRowSubmit(rows)}> Save </button>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-            </div> */}
+            </div>
 
-            <div className="w-50 mx-auto"><h6 onClick={onCreateTable} className="btn btncl">Linked Device</h6>
+        </form>
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+        
+            {/* <User/> */}
+
+
+            <div className="w-75"><h6 onClick={onCreateTable} className="btn btncl">Linked Device</h6>
            
               <div className="table-responsive">
                 <table className="table table-bordered table-hover" style={{  }}>
