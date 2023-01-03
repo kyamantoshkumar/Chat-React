@@ -3,6 +3,7 @@ import "./App.css";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import Room from "./pages/Room";
+import GeeksforGeeks from "./Search/toast";
 
 
 function App() {
@@ -13,9 +14,9 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/room" element={<Room />} />
+        <Route path="/geeksforgeeks" element={<GeeksforGeeks/>} />
       </Routes>
       </BrowserRouter>
-
     </div>
   );
 }
