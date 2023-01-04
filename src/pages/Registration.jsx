@@ -7,14 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 const  Registration = () =>  {
 
 const notify = () =>{ 
-	toast.error( () => {
-		if(name === '' || email === '' || password === '' || confirmPassword === 'matched' ) {
-			toast.error("Valid value")
-		}else{
-            toast.error("Invalid Error")
-		}
-	}) 
+	toast.error("Error Message")
 };
+
 // States for registration
 const [name, setName] = useState('');
 const [email, setEmail] = useState('');
@@ -53,8 +48,14 @@ const handleConfirmPassword = (e) => {
 };
 // Handling the form submission
 const handleSubmit = (e) => {
+
+	if (password !== confirmPassword) {
+		toast.error("Passwords don't match")
+    } else {
+        // make API call
+    }
 	e.preventDefault();
-	if (name === '' || email === '' || password === '' || confirmPassword === 'matched') {
+	if (name === '' || email === '' || password === '' || confirmPassword === '') {
 	setError(true);
 	} else {
 	setSubmitted(true);
@@ -62,25 +63,17 @@ const handleSubmit = (e) => {
 	}
 
 	// perform all neccassary validations
-if (password !== confirmPassword) {
-    setPassword("Passwords match");
-	  return(
-		toast("Passwords don't match")
-		) 
-    } else {
-        // make API call
-	  setPassword("Passwords don't match")
-    }
+   
 
       if(name ? "A to Z && a to z" : "") {
 	   toast("Vale false")
       } else {
-       setName(false)
-        alert(" Value pass")
+    //    setName(false)
+        toast.error(" Value pass")
         }
 	// var password = show ? "Hide Component" : "Show Component";
     //    if { show ? "Hide Component" : "Show Component"}
-	notify("Passwords don't match")
+	// notify("Passwords don't match")
 
 	// navigate("/")
  };
@@ -95,7 +88,6 @@ const successMessage = () => {
 		display: submitted ? '' : 'none',
 		}}>
 		<h6 style={{background:'#5fff8f'}} className='text-center text-success py-2 px-3 rounded fw-bold'>User {name} successfully registered!!</h6>
-
 	</div>
 	);
 };
