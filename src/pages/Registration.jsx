@@ -67,7 +67,7 @@ const Registration = () => {
 
     // perform all neccassary validations
 
-    if (name ? "A to Z && a to z" : "@#$57*") {
+    if (name ? "A to Z && a to z" : "none") {
       toast("Vale pass");
     } else {
       //    setName(false)
@@ -126,7 +126,7 @@ const Registration = () => {
   const myFont = {
     fontFamily: "serif",
   };
-  
+
   return (
 	 
     <div className="container  ">
