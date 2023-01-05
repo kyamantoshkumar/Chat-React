@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Regestartion from "../pages/Registration.jsx"
+import { ToastContainer, toast } from "react-toastify";
 //for navigate Link Route 
 
 const Login = () => {
@@ -10,14 +12,10 @@ const Login = () => {
     // States for checking the errors
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
-
-    // const  onClickUser = () => {
-    //     setEmail(email);
-    //     setPassword(password);
-    //    console.log(password,email,);
-    //    alert(email, password,)
-    // } 
-
+     // toast message
+    const notify = () => {
+        toast("");
+      }; 
     // Handling the email change
     const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -29,7 +27,7 @@ const Login = () => {
         setPassword(e.target.value);
         setSubmitted(false);
     };
-
+   // Handle Submit is login
     const handleSubmit = (e) => {
         e.preventDefault();
         if (email === '' || password === '') {
@@ -39,6 +37,13 @@ const Login = () => {
             setError(false);
         }
         navigate("/room")
+
+        // if(password !== Regestartion.ConfirmPassword) {
+        //     toast.error("Passwords don't match");
+        // } else {
+        //   // make API call
+        // }
+        
     };
 
     const errorMessage = () => {
@@ -75,25 +80,25 @@ const Login = () => {
     const myFont = {
      fontFamily: 'serif'
     }
+
     return (
         <>
-            <div className="container">
+            <div className="container-fluid">
                 <div className="col-md-8 col-sm-12">
                     {/* 1 of 8 */}
                 </div>
+
                 <div className="col-md-4 col-sm-12 mx-auto w-50 px-5">
-                    <div className="col-md-12 col-sm-12 px-4 mx-3">
-                        <div className="row">
+                    <div className="col-md-11 col-sm-12 px-4">
+                        <div className="col">
                             <div className="messages">
                                 {errorMessage()}
                                 {successMessage()}
                             </div>
-                            <h6 style={{background:'#b078fa'}} className="fs-3 fw-bold text-light text-center py-2 rounded shadow">Login Page</h6>
-                            <form className="form-control w-100 px-4 shadow" style={{background:'#cfe7f5'}}>
+                            <h6 style={{background:'#b078fa'}} className="fs-3 w-75 fw-bold text-light text-center py-2 rounded shadow">Login Page</h6>
+                            <form className="form-control w-75 px-4 shadow" style={{background:'#cfe7f5'}}>
 
                                 <table className="ms-4">
-                                    <thead>
-                                        <th>
                                             <tr>
                                                 <label style={myFont} className="fs-3" htmlFor="user">User Email</label>
                                                 <input
@@ -101,6 +106,7 @@ const Login = () => {
                                                     className="input form-control"
                                                     type="email"
                                                     value={email}
+                                                    name="email"
                                                     placeholder="Enter User..."
                                                     onChange={handleEmail} />
                                             </tr>
@@ -110,17 +116,18 @@ const Login = () => {
                                                     style={myStyle}
                                                     className="input form-control"
                                                     type="password"
+                                                    name="pwd"
                                                     value={password}
                                                     placeholder="Enter password..."
                                                     onChange={handlePassword} />
                                                 {/* <input type="text" name="passw" id="passw" value={email} onChange={(e)=>setEmail(e.target.value)}/>  */}
                                             </tr>
                                             <tr>
-                                                <button style={{background:'#7afcb0'}} className="btn mt-3 my-1 fs-6 w-100 text-bold text-success" onClick={handleSubmit}>Login</button>
+                                                <button style={{background:'#7afcb0'}} className="btn mt-3 my-1 fs-6 w-100 text-bold text-success" onClick={() => notify(handleSubmit)}>Login</button>
                                                 <button style={{background:'#91b9f5'}}className="btn text-primary fs-6 mb-3 text-bold  w-100" onClick={() => navigate("/registration")}>Registration</button>
+                                                <ToastContainer/>
                                             </tr>
-                                        </th>
-                                    </thead>
+                                    
                                 </table>
                             </form>
                         </div>
