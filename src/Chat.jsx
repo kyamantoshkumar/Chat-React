@@ -152,7 +152,8 @@ const tableRowSubmit = (index) => {
 
   return (
 
-    <div className="chat-window">
+   <div className="">
+     <div className="chat-window">
       <div className="chat-header justify-content-between">
         <p className="text-start d-fixed">Live Chat</p>
         <div>
@@ -366,6 +367,7 @@ const tableRowSubmit = (index) => {
         <button onClick={sendMessage}>&#10148;</button>
       </div>
     </div>
+   </div>
   );
 }
 
