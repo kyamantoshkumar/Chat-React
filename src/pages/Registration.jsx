@@ -126,7 +126,7 @@ const Registration = () => {
   const myFont = {
     fontFamily: "serif",
   };
-
+  
   return (
 	 
     <div className="container  ">
