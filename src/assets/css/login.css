@@ -1,4 +1,20 @@
-.icon{
-    width: 100px;
-    height: 9px;
+.img{
+    width: 5vw;
+    height: 10vh;
+    text-align: center;
+    /* justify-content: center; */
+}
+
+.form{
+    width: 25rem;
+    /* background-color: blueviolet; */
+    /* height: 4rem; */
+    background-color: #d1f5f7;
+}
+/* body{
+    text-align: center;
+} */
+
+.call{
+    width: 40rem;
 }
