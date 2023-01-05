@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Regestration from "../pages/Registration"
 import "../assets/css/login.css"
 const Login = () => {
+
     const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPasssword] = useState("")
@@ -22,11 +23,13 @@ const Login = () => {
         setEmail(e.target.value);
         setSubmitted(false);
     }
+
     // Handeling the Password Change
         const handlePassword = (e) => {
             setPasssword(e.target.value)
             setSubmitted(false)
         }
+
     // Handel Submit is login
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,11 +40,12 @@ const Login = () => {
             setError(false)
         }
         navigate("/room")
-        if(password !== Regestration.ConfirmPassword) {
-            toast.error("Password don't match")
-        }else{
-            // make API call
-        }
+
+        // if(password !== Regestration.ConfirmPassword) {
+        //     toast.error("Password don't match")
+        // }else{
+        //     // make API call
+        // }
     }
 
 const errorMessage = () => {
@@ -67,43 +71,55 @@ const successMessage = () => {
 }
 
 const myStyle = {
-    width: "25rem",
-    height:'4rem',
-    body:'center',
+    width: "34.3rem",
+    height: "4rem",
+    body: "center",
+    // fontFamily: 'text new roman'
 }
 const myFont = {
-    fontFamily: "serief"
-} 
+    fontFamily: 'serif'
+   }
  return(
-     <div className="constainer-fluid">
-        <div className="col-md-4 col-sm-12">
-            {/* 1 of 1 */}
-        </div>
-        <div className="col-md-4 col-sm-12">
-            <div className="col-md-12 col-sm-12 shadow ">
-               <div className="row">
+     <div className="container-fluid">
+        {/* <div className="col-md-4 col-sm-12">
+            1 of 1
+        </div> */}
+        <div className="col-md-12 col-sm-12">
+            <div className="col-md-8 col-sm-12 login">
+              
+            </div>
+            <div className="col-md-4 col-sm-12 shadow">
+            <div className="row ms-2 py-2 h-100">
                   <div className="message">
                     {errorMessage()}
                     {successMessage()}
                   </div>
-                   <h6 className="h-100">
-                   <i className="icon fa-solid fa-user"></i>
+                   <h6 className="text-center">
+                    <img className="img text-center" src={require("../assets/images/user.png")} alt=""/>
                    </h6>
-                  <h6 style={{background:'#b078fa', width:'100%' }} className="fs-3 w-100 fw-bold text-light text-center py-2 rounded shadow">Login Page</h6>
-                  <form className="form-control" style={{background:'#cfe7f5'}}>
+                  {/* <h6 style={{background:'#b078fa', width:'100%' }} style={{background:'#cfe7f5'}} className="fs-3 w-100 fw-bold text-light text-center py-2 rounded shadow">Login Page</h6> */}
+                <div className="formplane row">
+                <form className=" rounded">
+                  <table>
+                    <thead>
+                        <th>
                     <tr>
-                  <label for="email"><b>Email</b></label>
-                  <input type="text" placeholder="Enter Email" name="email" id="email" required onChange={(handleEmail)}/>
+                  <label style={myFont} className="text-bold mx-2 fs-4" htmlFor="email">Email</label>
+                  <input style={myStyle} className="input form-control" type="text" placeholder="Enter Email" name="email" id="email" onChange={(handleEmail)}/>
                   </tr>
                   <tr>
-                  <label for="psw"><b>Password</b></label>
-                  <input type="password" placeholder="Enter Password" name="psw" id="psw" required onChange={handlePassword}/>
+                  <label style={myFont} className="text-bold mx-2 fs-4" htmlFor="psw">Password</label>
+                  <input style={myStyle} className="input form-control" type="password" placeholder="Enter Password" name="psw" id="psw" onChange={handlePassword}/>
                   </tr>
-                  <tr> 
-                  <label for="psw-repeat"><b>Confirm Password</b></label>
-                  <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required />
-                  </tr>
+                  </th>
+                    </thead>
+                  </table>
+                  <button style={{background:'#7afcb0'}} className="btn mt-3 my-1 fs-6 w-100 text-bold text-success" onClick={handleSubmit}>Login</button>
+                  <button style={{background:'#91b9f5'}}className="btn text-primary fs-6 mb-3 text-bold  w-100" onClick={() => navigate("/registration")}>Registration</button>
+                 <ToastContainer/>
                   </form>
+                 
+                </div>
                </div>
             </div>
             {/* <Regestration/> */}
@@ -113,13 +129,12 @@ const myFont = {
 }
 export default Login
 
-
-
 /*
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Regestartion from "../pages/Registration.jsx"
 import { ToastContainer, toast } from "react-toastify";
+import "../assets/css/login.css"
 //for navigate Link Route 
 
 const Login = () => {
@@ -213,6 +228,9 @@ const Login = () => {
                                 {errorMessage()}
                                 {successMessage()}
                             </div>
+                            <h6 className="text-center">
+                            <img className="img text-center" src={require("../assets/images/user.png")} alt=""/>
+                            </h6> 
                             <h6 style={{background:'#b078fa'}} className="fs-3 w-75 fw-bold text-light text-center py-2 rounded shadow">Login Page</h6>
                             <form className="form-control w-75 px-4 shadow" style={{background:'#cfe7f5'}}>
 
@@ -238,10 +256,10 @@ const Login = () => {
                                                     value={password}
                                                     placeholder="Enter password..."
                                                     onChange={handlePassword} />
-                                                {/* <input type="text" name="passw" id="passw" value={email} onChange={(e)=>setEmail(e.target.value)}/>  *
                                             </tr>
                                             <tr>
-                                                <button style={{background:'#7afcb0'}} className="btn mt-3 my-1 fs-6 w-100 text-bold text-success" onClick={() => notify(handleSubmit)}>Login</button>
+                                                <button style={{background:'#7afcb0'}} className="btn mt-3 my-1 fs-6 w-100 text-bold text-success" onClick={handleSubmit}>Login</button>
+                                                <button style={{background:"#7afcb0"}} className="btn my-1 fs-6" onClick={() => notify("Password don't match")}></button>
                                                 <button style={{background:'#91b9f5'}}className="btn text-primary fs-6 mb-3 text-bold  w-100" onClick={() => navigate("/registration")}>Registration</button>
                                                 <ToastContainer/>
                                             </tr>
@@ -258,7 +276,6 @@ const Login = () => {
 
 export default Login
 */
-
 /*
 import React, { useState } from "react"
 import "bootstrap/dist/css/bootstrap-grid.min.css";
