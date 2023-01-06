@@ -104,7 +104,7 @@ const Registration = () => {
         style={{
           display: error ? "" : "none",
         }}
-      >
+        >
         <h5
           style={{ background: "#f79d9d" }}
           className="text-center text-danger py-2 px-3 rounded fw-bold"
@@ -231,8 +231,8 @@ const Registration = () => {
                           />
 
                           {/* <button style={{background:'#82fdb1'}} onClick={() => navigate("/") (handleSubmit)} className="btn text-success  my-3 w-100 " type="submit">
-		Submit
-		</button> */}
+		                          Submit
+		                          </button> */}
                           {/* <button style={{background:'#82fdb1'}} className="btn text-primary  my-3 fs-6 mb-3  w-100" onClick={() => notify("Password don't matched")(handleSubmit)}>Submit</button> */}
                           <button
                             style={{ background: "#82fdb1" }}
@@ -248,6 +248,9 @@ const Registration = () => {
                           >
                             Check It
                           </button>
+                          <span className="form-input-login">
+                           Already have an account? Login <a href="/">here</a>
+                          </span>
                           <ToastContainer />
                           {/* <button onClick={notify}>Click Me!</button> */}
                         </tr>
