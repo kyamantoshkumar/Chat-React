@@ -160,7 +160,7 @@ const tableRowSubmit = (index) => {
 
           <input
             style={myStyle}
-            className="placeholder text-light bg-transparent placeholder-light"
+            className="placeholder text-light bg-transparent"
             type="text"
             placeholder="Search... "
             value={text}
