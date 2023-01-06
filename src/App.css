@@ -221,7 +221,7 @@ body {
   background: transparent;
   outline: none;
   font-size: 19px;
-  color: lightgray;
+  color: rgb(241, 238, 238);
   text-align: end;
   margin-top: 1.5px;
   
@@ -277,7 +277,7 @@ body {
   box-shadow: none;
   border-radius: none;
   opacity: none;
-  color: white;
+  color: #ffffff;
   /* color: #c8f3d8; */
 }
 
