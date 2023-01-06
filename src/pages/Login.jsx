@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Regestration from "../pages/Registration";
 import "../assets/css/login.css";
+
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -83,21 +84,24 @@ const Login = () => {
   };
 
   const myStyle = {
-    width: "34.3rem",
+    width: "33rem",
     height: "4rem",
     body: "center",
     // fontFamily: 'text new roman'
   };
+  
   const myFont = {
     fontFamily: "serif",
   };
+
   return ( 
     <div className="container-fluid">
       {/* <div className="col-md-4 col-sm-12">
             1 of 1
         </div> */}
       <div className="col-md-12 col-sm-12">
-        <div className="col-md-8 col-sm-12 login"></div>
+        <div className="row">
+        <div className="col-md-4 col-sm-12 login"></div>
         <div className="col-md-4 col-sm-12 shadow h-100">
          <div className="row ">
          <div className="row ms-2 py-2 h-100 w-100">
@@ -176,6 +180,8 @@ const Login = () => {
             </div>
           </div>
           </div> 
+        </div>
+        <div className="col-md-4 col-sm-12"></div>
         </div>
         {/* <Regestration/> */}
       </div>
