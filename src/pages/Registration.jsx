@@ -89,7 +89,7 @@ const Registration = () => {
         <h6
           style={{ background: "#5fff8f" }}
           className="text-center text-success py-2 px-3 rounded fw-bold"
-        >
+          >
           User {name} successfully registered!!
         </h6>
       </div>
