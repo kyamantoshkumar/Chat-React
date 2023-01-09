@@ -76,7 +76,7 @@ const Login = () => {
         <h6
           style={{ background: "#5fff8f" }}
           className="text-success text-center rounded py-2 px-3 rounded fw-bold"
-        >
+          >
           Login Successfully
         </h6>
       </div>
@@ -84,12 +84,12 @@ const Login = () => {
   };
 
   const myStyle = {
-    width: "33rem",
+    width: "24rem",
     height: "4rem",
     body: "center",
     // fontFamily: 'text new roman'
   };
-  
+
   const myFont = {
     fontFamily: "serif",
   };
@@ -99,12 +99,12 @@ const Login = () => {
       {/* <div className="col-md-4 col-sm-12">
             1 of 1
         </div> */}
-      <div className="col-md-12 col-sm-12">
+      <div className=" col-md-12 col-sm-12">
         <div className="row">
-        <div className="col-md-4 col-sm-12 login"></div>
-        <div className="col-md-4 col-sm-12 shadow h-100">
+        <div className="col-md-8 col-sm-12 login px-5 row"></div>
+        <div className="col-md-4 col-sm-12 shadow h-100 border border-black">
          <div className="row ">
-         <div className="row ms-2 py-2 h-100 w-100">
+         <div className="row ms-2 py-2">
             <div className="message">
               {errorMessage()}
               {successMessage()}
@@ -117,8 +117,8 @@ const Login = () => {
               />
             </h6>
             {/* <h6 style={{background:'#b078fa', width:'100%' }} style={{background:'#cfe7f5'}} className="fs-3 w-100 fw-bold text-light text-center py-2 rounded shadow">Login Page</h6> */}
-            <div className="formplane row">
-              <form className=" rounded">
+            <div className=" row">
+              <form className="rounded">
                 <table>
                   <thead>
                     <th>
@@ -146,7 +146,7 @@ const Login = () => {
                           className="text-bold mx-2 fs-4"
                           htmlFor="psw"
                         >
-                          Password
+                         Password
                         </label>
                         <input
                           style={myStyle}
@@ -161,27 +161,31 @@ const Login = () => {
                     </th>
                   </thead>
                 </table>
-                <button
+
+                <div className="d-flex my-3">
+                 <button
                   style={{ background: "#7afcb0" }}
-                  className="btn mt-3 my-1 fs-6 w-100 text-bold text-light"
+                  className="btn fs-6 text-bold text-light"
                   onClick={handleSubmit}
-                >
+                  >
                   Login
                 </button>
                 <button
                   style={{ background: "#91b9f5" }}
-                  className="btn text-light fs-6 mb-3 text-bold  w-100"
+                  className="btn mx-2 text-light fs-6 text-bold"
                   onClick={() => navigate("/registration")}
-                >
+                  >
                   Registration
                 </button>
+                 </div>
+
                 <ToastContainer />
               </form>
             </div>
           </div>
           </div> 
         </div>
-        <div className="col-md-4 col-sm-12"></div>
+        {/* <div className="col-md-4 col-sm-12"></div> */}
         </div>
         {/* <Regestration/> */}
       </div>
