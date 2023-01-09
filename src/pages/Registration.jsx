@@ -73,11 +73,10 @@ const Registration = () => {
       //    setName(false)
       toast.error(" Value false");
     }
-
     // navigate("/")
   };
 
-  // Showing success message
+// Showing success message
   const successMessage = () => {
     return (
       <div
@@ -85,7 +84,7 @@ const Registration = () => {
         style={{
           display: submitted ? "" : "none",
         }}
-      >
+       >
         <h6
           style={{ background: "#5fff8f" }}
           className="text-center text-success py-2 px-3 rounded fw-bold"
@@ -103,12 +102,12 @@ const Registration = () => {
         className="error"
         style={{
           display: error ? "" : "none",
-        }}
-        >
-        <h5
+         }}
+         >
+         <h5
           style={{ background: "#f79d9d" }}
           className="text-center text-danger py-2 px-3 rounded fw-bold"
-        >
+         >
           Please enter all the fields
         </h5>
       </div>
@@ -122,25 +121,29 @@ const Registration = () => {
     body: "center",
     box: "3d",
     // fontFamily:'text new roman',
-  };
+   };
   const myFont = {
     fontFamily: "serif",
   };
 
   return (
-	 
-    <div className="container  ">
-      <div className="col-md-4 col-sm-12">{/* 1 of 4 */}</div>
-      <div className="col-md-8 col-sm-12 my-4 mx-auto w-50 p-5 ">
+
+<div className="container-fluid">
+     
+      <div className="col-lg-12 col-md-12 col-sm-12">
         {/* <div className="col-md-12 col-sm-12  "> */}
           <div className="row">
-            <div>
-              <div className="form-form">
+            <div className="col-lg-6 col-md-6 col-sm-12"> </div>
+
+            <div className="col-lg-6 col-md-4 col-sm-12">
+            <div className="container">
+              <div className="col-md-11 col-sm-12 row">
+              <div className="form row">
                 <div>
                   <h1
                     style={{ background: "#7371f7" }}
-                    className="fs-3 fw-bold text-center py-2 rounded text-light my-3"
-                  >
+                    className="fw-bold text-center py-2 rounded text-light my-3"
+                    >
                     User Registration
                   </h1>
                 </div>
@@ -152,10 +155,10 @@ const Registration = () => {
                 </div>
 
                 <form
-                  className="form-control"
-                  style={{ background: "#91b9f5" }}
+                  className="form-control shadow border border-black px-4 "
+                  // style={{ background: "#91b9f5" }}
                 >
-                  <table className="ms-4">
+                  <table className="">
                     <thead>
                       <th>
                         <tr>
@@ -164,7 +167,7 @@ const Registration = () => {
                             style={myFont}
                             className="label fs-4 mt-2"
                             htmlFor="user"
-                          >
+                           >
                             Name
                           </label>
                           <input
@@ -182,7 +185,7 @@ const Registration = () => {
                             style={myFont}
                             className="label fs-4"
                             htmlFor="email"
-                          >
+                           >
                             Email
                           </label>
                           <input
@@ -193,14 +196,14 @@ const Registration = () => {
                             type="email"
                             name="email"
                             placeholder="Enter email..."
-                          />
+                            />
                         </tr>
                         <tr>
                           <label
                             style={myFont}
                             className="label fs-4"
                             htmlFor="password"
-                          >
+                           >
                             Password
                           </label>
                           <input
@@ -219,7 +222,6 @@ const Registration = () => {
                             htmlFor="confirmPassword"
                           >
                             Confirm Password
-
                           </label>
                           <input
                             style={myStyle}
@@ -229,23 +231,24 @@ const Registration = () => {
                             type="password"
                             placeholder="Enter Confirm Password..."
                           />
-
+                           
                           {/* <button style={{background:'#82fdb1'}} onClick={() => navigate("/") (handleSubmit)} className="btn text-success  my-3 w-100 " type="submit">
-		                          Submit
+		                           Submit
 		                          </button> */}
                           {/* <button style={{background:'#82fdb1'}} className="btn text-primary  my-3 fs-6 mb-3  w-100" onClick={() => notify("Password don't matched")(handleSubmit)}>Submit</button> */}
+
                           <button
                             style={{ background: "#82fdb1" }}
                             className="btn text-primary  my-3 fs-6 mb-3  w-100"
                             onClick={handleSubmit}
                           >
-                            Submit
+                          Submit
                           </button>
                           <button
                             style={{ background: "#82fdb1" }}
                             className="btn text-primary  my-3 fs-6 mb-3  w-100"
                             onClick={notify}
-                          >
+                           >
                             Check It
                           </button>
                           <span className="form-input-login">
@@ -259,6 +262,8 @@ const Registration = () => {
                   </table>
                 </form>
               </div>
+              </div>
+            </div>
             </div>
           </div>
         {/* </div> */}
@@ -267,6 +272,7 @@ const Registration = () => {
   );
 };
 export default Registration;
+
 
 // import React, { useState } from "react"
 
