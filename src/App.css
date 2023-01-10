@@ -266,7 +266,7 @@ body {
   width: 20px;
 }
 
-.placeholder {
+.placeholdernew {
    /* text-align: white !important;  */
   border: none;
   margin-left: 29%;
@@ -277,25 +277,16 @@ body {
   /* background: transparent; */
   box-shadow: none;
   border-radius: none;
-  opacity: none;
+  /* opacity: none; */
   color: #ffffff;
   /* color: #c8f3d8; */
 }
 
-/* .placeholder {
-  display: inline-block;
-  min-height: 1em;
-  vertical-align: middle;
-  cursor: wait;
-  background-color: currentcolor;
-  opacity: .5;
-} */
 
 .ellipsis {
   color: white !important;
   border: none !important;
   font-size: 20px;
-  opacity: 0.9;
   cursor: pointer;
 }
 
@@ -307,8 +298,8 @@ input{
   
 }
 
-.placeholder {
-  color: white;
+.placeholdernew {
+  background-color: white;
 }
 
 .btncl:hover{
