@@ -160,7 +160,7 @@ const tableRowSubmit = (index) => {
 
           <input
             style={myStyle}
-            className="placeholder text-light bg-transparent"
+            className="placeholdernew text-light bg-transparent"
             type="text"
             placeholder="Search... "
             value={text}
@@ -179,9 +179,9 @@ const tableRowSubmit = (index) => {
           <div style={myStyle} className="btn-light rounded-1 mx-auto" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
 
             {/* <div type="button" className="btn btncli" data-bs-toggle="modal-sm" data-bs-target="#exampleModal">New Member */}
-            <button type="button" className="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Right popover">
-                Popover on left
-            </button>  
+            {/* <button type="button" className="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Right popover">
+                
+            </button>   */}
 
 <div type="button" className="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">New Member</div>
 
