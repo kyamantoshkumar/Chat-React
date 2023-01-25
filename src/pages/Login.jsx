@@ -21,7 +21,7 @@ const Login = () => {
   const handleEmail = (e) => {
     setEmail(e.target.value);
     setSubmitted(false);
-  };
+   };
 
   // Handeling the Password Change
   const handlePassword = (e) => {
@@ -39,11 +39,11 @@ const Login = () => {
       setError(false);
     }
     navigate("/room");
-
+    
     if(password !== Regestration.ConfirmPassword) {
         toast.error("Password don't match")
     }else{
-        // make API call
+// make API call
     }
   };
 
@@ -54,12 +54,13 @@ const Login = () => {
         style={{
           display: error ? "" : "none",
         }}
-      >
-        <h6
-          style={{ background: "#f79d9d" }}
+       >
+       <h6
+          style={{ background: "#f79d9d"}}
           className="text-danger text-center py-2 px-3 rounded fw-bold"
-        >
+         >
           Please Enter All the Field
+
         </h6>
       </div>
     );
@@ -87,7 +88,7 @@ const Login = () => {
     width: "24rem",
     height: "4rem",
     body: "center",
-    // fontFamily: 'text new roman'
+  // fontFamily: 'text new roman'
   };
 
   const myFont = {
@@ -193,6 +194,7 @@ const Login = () => {
   );
 };
 export default Login;
+
 
 /*
 import React, { useState } from "react"
