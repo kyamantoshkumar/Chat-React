@@ -151,7 +151,6 @@ const tableRowSubmit = (index) => {
   }
 
   return (
-
    <div className="">
      <div className="chat-window">
       <div className="chat-header justify-content-between">
@@ -175,7 +174,7 @@ const tableRowSubmit = (index) => {
           trigger={<button className="ellipsis" style={{ background: 'transparent', border: 'none' }}><i className="ellipsis fa-solid fa-ellipsis-vertical"></i>
           </button>}
           position="left top" className="bg-primary"
-        >
+         >
           <div style={myStyle} className="btn-light rounded-1 mx-auto" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
 
             {/* <div type="button" className="btn btncli" data-bs-toggle="modal-sm" data-bs-target="#exampleModal">New Member */}
@@ -302,12 +301,11 @@ const tableRowSubmit = (index) => {
                 </table>
               </div>
             </div>
-
             <div><h6 className="btn btncl">Setting</h6></div>
           </div>
         </Popup>
       </div>
-
+      
       <div className="chat-body">
         <ScrollToBottom className="message-container">
           {messageList.map((messageContent, index) => {
